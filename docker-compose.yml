@@ -1,0 +1,71 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Élan Traiteur — docker-compose.yml
+#
+# Usage:
+#   Local dev/test:  docker compose up --build
+#   Production:      Deploy via EasyPanel (uses Dockerfile directly)
+#
+# EasyPanel reads the Dockerfile automatically — this file is provided
+# for local testing and as a reference for environment variables.
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+
+    image: elan-traiteur:latest
+
+    container_name: elan-traiteur
+
+    ports:
+      - "80:80"         # Change to "8080:80" if port 80 is taken locally
+
+    # Auto-restart on crash or server reboot
+    restart: unless-stopped
+
+    # Resource limits (adjust to your VPS plan)
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          cpus: "0.10"
+          memory: 32M
+
+    # Health monitoring
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80/health"]
+      interval: 15s
+      timeout:  5s
+      retries:  3
+      start_period: 10s
+
+    # Logging — keeps containers from filling the disk
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Environment (extend as needed)
+    environment:
+      - TZ=Africa/Casablanca
+
+    # Read-only root filesystem (extra security hardening)
+    # nginx needs a few writable paths; mount them as tmpfs
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:size=32m,mode=0755
+      - /var/run:size=4m,mode=0755
+      - /tmp:size=16m,mode=1777
+
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    driver: bridge
