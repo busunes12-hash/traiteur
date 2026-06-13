@@ -19,16 +19,18 @@ export const Manifesto = () => {
           <div className="reveal-left relative">
             <div className="img-zoom aspect-[3/4] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop"
+                srcSet="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80&auto=format&fit=crop 400w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop 600w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format&fit=crop 900w"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 alt="Chef cuisinier Élan Traiteur en action"
                 className="h-full w-full object-cover"
                 loading="lazy"
               />
             </div>
             {/* Floating stat box */}
-            <div className="glass absolute -bottom-6 -right-6 p-6 sm:p-8">
-              <p className="font-display text-3xl sm:text-4xl font-light text-gradient-gold">12 ans</p>
-              <p className="mt-2 font-sans text-xs uppercase tracking-widest text-obsidian-300">de passion</p>
+            <div className="glass absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 p-4 sm:p-8">
+              <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-gradient-gold">12 ans</p>
+              <p className="mt-1 sm:mt-2 font-sans text-xs uppercase tracking-widest text-obsidian-300">de passion</p>
             </div>
           </div>
 
