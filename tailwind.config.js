@@ -69,6 +69,10 @@ export default {
           '0%':   { backgroundPosition: '-200% center' },
           '100%': { backgroundPosition: '200% center' },
         },
+        'pulse-glow': {
+          '0%, 100%': { opacity: '1', filter: 'drop-shadow(0 0 8px rgba(201, 168, 76, 0.4))' },
+          '50%': { opacity: '0.8', filter: 'drop-shadow(0 0 16px rgba(201, 168, 76, 0.2))' },
+        },
       },
       animation: {
         'fade-up':    'fade-up 0.9s cubic-bezier(0.25,0.1,0.25,1) both',
@@ -77,6 +81,18 @@ export default {
         'ken-burns':  'ken-burns 8s ease-in-out infinite alternate',
         'float':      'float 5s ease-in-out infinite',
         'shimmer':    'shimmer 3s linear infinite',
+        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      boxShadow: {
+        'glow': '0 0 20px rgba(201, 168, 76, 0.2)',
+        'glow-lg': '0 0 40px rgba(201, 168, 76, 0.3)',
+        'inner-gold': 'inset 0 1px 3px rgba(201, 168, 76, 0.2)',
+      },
+      spacing: {
+        'clamp-sm': 'clamp(1rem, 3vw, 1.5rem)',
+        'clamp-md': 'clamp(1.5rem, 5vw, 2rem)',
+        'clamp-lg': 'clamp(2rem, 7vw, 3rem)',
+        'clamp-xl': 'clamp(3rem, 10vw, 4rem)',
       },
     },
   },
