@@ -4,23 +4,28 @@ import { Eyebrow, PageTitle, Subtitle, BtnGold, BtnOutline } from '../common';
 
 const HERO_SLIDES = [
   {
-    url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&q=80&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+    sizes: 'w=1920&q=80&auto=format&fit=crop',
     label: 'Mariages d\'exception',
   },
   {
-    url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1920&q=80&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3',
+    sizes: 'w=1920&q=80&auto=format&fit=crop',
     label: 'Réceptions de prestige',
   },
   {
-    url: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1920&q=80&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d',
+    sizes: 'w=1920&q=80&auto=format&fit=crop',
     label: 'Tables gastronomiques',
   },
   {
-    url: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=1920&q=80&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330',
+    sizes: 'w=1920&q=80&auto=format&fit=crop',
     label: 'Événements corporate',
   },
   {
-    url: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=1920&q=80&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c',
+    sizes: 'w=1920&q=80&auto=format&fit=crop',
     label: 'Décoration florale',
   },
 ];
@@ -57,7 +62,9 @@ export const Hero = () => {
           aria-hidden={i !== current}
         >
           <img
-            src={slide.url}
+            src={`${slide.url}?${slide.sizes}`}
+            srcSet={`${slide.url}?w=768&q=80&auto=format&fit=crop 768w, ${slide.url}?w=1366&q=80&auto=format&fit=crop 1366w, ${slide.url}?w=1920&q=80&auto=format&fit=crop 1920w`}
+            sizes="100vw"
             alt={slide.label}
             onLoad={() => setLoaded(l => ({ ...l, [i]: true }))}
             className="absolute inset-0 h-full w-full object-cover"

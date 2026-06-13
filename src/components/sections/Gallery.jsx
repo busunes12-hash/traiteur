@@ -2,12 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { Eyebrow } from '../common';
 
 const GALLERY_IMAGES = [
-  { url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80&auto=format&fit=crop', label: 'Mariage royal', span: 'row-span-2' },
-  { url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80&auto=format&fit=crop', label: 'Réception de gala' },
-  { url: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80&auto=format&fit=crop', label: 'Gastronomie' },
-  { url: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800&q=80&auto=format&fit=crop', label: 'Corporate event', span: 'row-span-2' },
-  { url: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=800&q=80&auto=format&fit=crop', label: 'Floral design' },
-  { url: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80&auto=format&fit=crop', label: 'VIP soirée' },
+  { 
+    url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+    sizes: 'w=800&q=80&auto=format&fit=crop',
+    label: 'Mariage royal', 
+    span: 'row-span-2' 
+  },
+  { 
+    url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3',
+    sizes: 'w=800&q=80&auto=format&fit=crop',
+    label: 'Réception de gala' 
+  },
+  { 
+    url: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d',
+    sizes: 'w=800&q=80&auto=format&fit=crop',
+    label: 'Gastronomie' 
+  },
+  { 
+    url: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330',
+    sizes: 'w=800&q=80&auto=format&fit=crop',
+    label: 'Corporate event', 
+    span: 'row-span-2' 
+  },
+  { 
+    url: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c',
+    sizes: 'w=800&q=80&auto=format&fit=crop',
+    label: 'Floral design' 
+  },
+  { 
+    url: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622',
+    sizes: 'w=800&q=80&auto=format&fit=crop',
+    label: 'VIP soirée' 
+  },
 ];
 
 export const Gallery = () => {
@@ -47,7 +73,9 @@ export const Gallery = () => {
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setLightbox(img)}
             >
               <img
-                src={img.url}
+                src={`${img.url}?${img.sizes}`}
+                srcSet={`${img.url}?w=400&q=80&auto=format&fit=crop 400w, ${img.url}?w=600&q=80&auto=format&fit=crop 600w, ${img.url}?w=800&q=80&auto=format&fit=crop 800w, ${img.url}?w=1200&q=80&auto=format&fit=crop 1200w`}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 alt={img.label}
                 className="h-full w-full object-cover"
                 loading="lazy"
@@ -85,9 +113,11 @@ export const Gallery = () => {
             </svg>
           </button>
           <img
-            src={lightbox.url.replace('w=800', 'w=1400')}
+            src={`${lightbox.url}?w=1400&q=85&auto=format&fit=crop`}
+            srcSet={`${lightbox.url}?w=800&q=85&auto=format&fit=crop 800w, ${lightbox.url}?w=1200&q=85&auto=format&fit=crop 1200w, ${lightbox.url}?w=1400&q=85&auto=format&fit=crop 1400w`}
+            sizes="(max-width: 1024px) 100vw, 90vw"
             alt={lightbox.label}
-            className="max-h-[85vh] max-w-[95vw] sm:max-w-[90vw] object-contain"
+            className="max-h-[85vh] max-w-[95vw] sm:max-w-[90vw] object-contain animate-fade-in"
             onClick={e => e.stopPropagation()}
           />
           <p className="absolute bottom-4 sm:bottom-8 font-display text-base sm:text-lg font-light text-champagne-400">{lightbox.label}</p>
