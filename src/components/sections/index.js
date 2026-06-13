@@ -1,0 +1,10 @@
+export { Navbar, Logo } from './Navbar';
+export { Hero } from './Hero';
+export { Services } from './Services';
+export { Manifesto } from './Manifesto';
+export { Gallery } from './Gallery';
+export { Testimonials } from './Testimonials';
+export { Pricing } from './Pricing';
+export { FAQ } from './FAQ';
+export { Contact } from './Contact';
+export { Footer } from './Footer';
